@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  mysql:
+    image: mysql:8
+    ports:
+      - 3306:3306
+    restart: always
+    environment:
+      MYSQL_DATABASE: sizer
+      MYSQL_USER: sizer
+      MYSQL_PASSWORD: bTqacE%57gMepS8P
+      MYSQL_ROOT_PASSWORD: bTqacE%57gMepS8P
+    volumes:
+      - datavolume:/var/lib/mysql
+
+  phpmyadmin:
+    depends_on:
+      - mysql
+    image: phpmyadmin:5
+    restart: always
+    ports:
+      - 5000:80
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: bTqacE%57gMepS8P 
+
+volumes:
+  datavolume:
+
